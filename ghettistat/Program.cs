@@ -1,5 +1,5 @@
-using GhettiBergApi.Interfaces;
-using GhettiBergApi.Services;
+using GhettiStatApi.Interfaces;
+using GhettiStatApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

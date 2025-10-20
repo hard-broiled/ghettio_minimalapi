@@ -1,6 +1,6 @@
-using GhettiBergApi.Models;
+using GhettiStatApi.Models;
 
-namespace GhettiBergApi.Interfaces;
+namespace GhettiStatApi.Interfaces;
 
 /// <summary>
 /// Interface for text processing implementations.

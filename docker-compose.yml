@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Text processing service (worker)
+  text-processing-api:
+    build:
+      context: ./TextProcessingApi
+      dockerfile: Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    restart: unless-stopped
+    networks:
+      - text-processing-network
+
+  # Control service (orchestrator)
+  control-service:
+    build:
+      context: ./ControlService
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - TextProcessingService__BaseUrl=http://text-processing-api:8080
+    depends_on:
+      - text-processing-api
+    restart: unless-stopped
+    networks:
+      - text-processing-network
+
+  # Optional: RabbitMQ (uncomment when ready to use actual RabbitMQ)
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=guest
+  #     - RABBITMQ_DEFAULT_PASS=guest
+  #   restart: unless-stopped
+  #   networks:
+  #     - text-processing-network
+
+networks:
+  text-processing-network:
+    driver: bridge

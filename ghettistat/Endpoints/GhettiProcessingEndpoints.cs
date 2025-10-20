@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using GhettiBergApi.Interfaces;
-using GhettiBergApi.Models;
+using GhettiStatApi.Interfaces;
+using GhettiStatApi.Models;
 
-namespace GhettiBergApi.Services;
+namespace GhettiStatApi.Services;
 
 /// <summary>
 /// Endpoint configuration for text processing API.

@@ -1,4 +1,4 @@
-namespace GhettiBergApi.Models;
+namespace GhettiStatApi.Models;
 
 /// <summary>
 /// Request model for text processing endpoint.
